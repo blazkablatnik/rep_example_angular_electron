@@ -1,3 +1,28 @@
+## How to reproduce issue:
+1. Follow instructions below to clone and install
+2. Run `npm start`
+3. Electron app should open (The webpage that is opened at the same time is not of interest)
+4. Open developer tools (`view > Toggle developer tools`)
+5. Open file named `app.component.ts`
+6. Place a breakpoint in line 33 (at `this.ngZone.run(() => {`)
+7. Open console. You should be able to see this error:
+```
+ERROR Error: Failed to execute 'invoke' on 'CreateHTMLCallback': The provided callback is no longer runnable.
+    at trustedHTMLFromStringBypass (core.js:5278)
+    at ɵɵsanitizeHtml (core.js:5913)
+    at elementPropertyInternal (core.js:9961)
+    at ɵɵproperty (core.js:14693)
+    at AppComponent_Template (template.html:2)
+    at executeTemplate (core.js:9538)
+    at refreshView (core.js:9407)
+    at refreshComponent (core.js:10573)
+    at refreshChildComponents (core.js:9204)
+    at refreshView (core.js:9457)
+```
+8. Error will be triggered every time event is send from main Electron process
+
+--- 
+
 [![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
 ![Maintained][maintained-badge]
